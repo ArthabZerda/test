@@ -41,7 +41,7 @@
           <a class="nav-link " aria-current="page" href="<?php echo $key;?>"><?php echo $value;?></a>
         </li>
            <?php }
-
+//asfgasdfgasdf
           if(!empty($_SESSION["id"])){ 
               echo "<li class='nav-item'> <a class='nav-link active' aria-current='page' href='logout.php' id='lg'> Kilépés</a></li>";
 
