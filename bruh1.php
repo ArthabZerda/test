@@ -1,6 +1,6 @@
 <?php 
 
-header('location: https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley');
+header('location: https://www.youtube.com/watch?v=2TvRITW4M3M&ab_channel=ItsGman');
 
 ?><!DOCTYPE html>
 <html lang="en">
