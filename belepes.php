@@ -139,6 +139,7 @@ if(!empty($_SESSION["id"])){
 
 elseif(isset($_POST['user'])){
 echo $loginError;
+//asdasdasdasdasd
 }
 ?>
 <form action="ulesrend.php" method="post">
