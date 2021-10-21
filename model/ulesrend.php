@@ -1,5 +1,6 @@
 <?php
-require "../db.inc.php";
+
+
 
 class ulesrend{
     private $id;
@@ -27,17 +28,36 @@ class ulesrend{
                 } 
     }
 
-    
-    public function get_nev(){
-        
-               return $this->nev;
-                
-    }
+    public function get_id(){
+        return $this->id;        
 }
+    public function get_nev(){
+               return $this->nev;        
+    }
+    public function get_sor(){
+        return $this->sor;        
+    }
+    public function get_oszlop(){
+        return $this->oszlop;        
+    }
+    public function get_jelszo(){
+        return $this->jelszo;        
+    }
+    public function get_felhasznalo(){
+        return $this->felhasznalo;        
+    }
+    
+
+
+}/*
 
 $tanulo = new ulesrend;
 
 $tanulo->set_user(4, $conn);
-
-echo $tanulo->get_nev();
+echo "Név: ";
+echo $tanulo->get_nev()."<br>Sor: ";
+echo $tanulo->get_sor()."<br>Oszlop: ";
+echo $tanulo->get_oszlop()."<br>Jelszo: ";
+echo $tanulo->get_jelszo()."<br>Felhasználónév: ";
+echo $tanulo->get_felhasznalo()."<br>";*/
 ?>

@@ -4,6 +4,8 @@ session_start();
 require 'db.inc.php';
 $title = "Belépés";
 include 'htmlheader.inc.php';
+require "model/Ulesrend.php";
+$tanulo = new ulesrend;
 
 
 function tanulokListaja($conn){
@@ -14,6 +16,7 @@ function tanulokListaja($conn){
 
 // form feldolgozása
 //$loginError = '';
+/*
 if(!empty($_POST["hianyzo_id"])){
   $sql = "INSERT INTO hianyzok VALUES(".$_POST["hianyzo_id"].")";
   $result = $conn->query($sql);
@@ -22,7 +25,7 @@ if(!empty($_POST["hianyzo_id"])){
   $sql = "DELETE FROM hianyzok WHERE id =".$_GET['nem_hianyzo'];
   $result = $conn->query($sql);
   
-}elseif(isset($_POST['user'])and isset($_POST['pw'])){
+}else*/if(isset($_POST['user'])and isset($_POST['pw'])){
   $loginError = '';
     if(strlen($_POST['user']) == 0 ){
       $loginError .= "Nem írtál be felhasználónevet<br>";
@@ -31,16 +34,16 @@ if(!empty($_POST["hianyzo_id"])){
       $loginError .= "Nem írtál be jelszót";
     }
     if($loginError == ''){
-      $sql ="SELECT id, nev, jelszo FROM ulesrend WHERE felhasznalo='".$_POST['user']."'";
+      $sql ="SELECT id FROM ulesrend WHERE felhasznalo='".$_POST['user']."'";
       $result = $conn->query($sql);
   
       if ($result->num_rows > 0) {
+        
         if($row = $result->fetch_assoc()) {
-          if(md5($_POST['pw']) == $row['jelszo']){
-            //érvényes belépés
-            
+          $tanulo->set_user($row['id'], $conn);
+          if(md5($_POST['pw']) == $tanulo->get_jelszo()){
             $_SESSION["id"] = $row['id'];
-            $_SESSION["nev"] =$row['nev'];
+            $_SESSION["nev"] =$tanulo->get_nev();
             header('Location: ulesrend.php');
             exit();
           }else  $loginError .= 'Érvénytelen jelszó';
