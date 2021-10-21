@@ -1,4 +1,6 @@
 <?php
+require "../db.inc.php";
+
 class ulesrend{
     private $id;
     private $nev;
@@ -31,4 +33,10 @@ class ulesrend{
                 
     }
 }
+
+$tanulo = new ulesrend>;
+
+$tanulo->set_user(4, $conn);
+
+echo $tanulo-get_usernev();
 ?>
