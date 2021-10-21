@@ -2,6 +2,8 @@
 session_start();
 
 require 'db.inc.php';
+require "model/Ulesrend.php";
+$tanulo = new ulesrend;
 
 function tanulokListaja($conn){
   $sql = "SELECT id, nev, sor, oszlop FROM ulesrend";
@@ -18,6 +20,7 @@ if(!empty($_POST["hianyzo_id"])){
 }elseif(!empty($_GET['nem_hianyzo'])){
   $sql = "DELETE FROM hianyzok WHERE id =".$_GET['nem_hianyzo'];
   $result = $conn->query($sql);
+  
   
 }elseif(isset($_POST['user'])and isset($_POST['pw'])){
   $loginError = '';
@@ -162,9 +165,12 @@ Jelszó: <input type="password" name="pw">
           if(!empty($_SESSION['id']) and in_array($_SESSION['id'], $f)){
            echo "Hiányzó <select  name='hianyzo_id'>";
               $result = tanulokListaja($conn);
+              
               if ($result->num_rows > 0) { 
                 while($row = mysqli_fetch_assoc($result)) {
-                 if($row["nev"] != '  ' && $row["nev"] != '' and !in_array($row["id"], $hianyzok) ) echo '<option value="'.$row["id"].'">'.$row["nev"].'</option> ';
+                  $tanulo->set_user($row['id'], $conn);
+
+                 if($tanulo->get_nev()!= '  ' && $tanulo->get_nev() != '' and !in_array($row["id"], $hianyzok) ) echo '<option value="'.$row["id"].'">'.$tanulo->get_nev().'</option> ';
 
                 }
               }
@@ -193,8 +199,10 @@ Jelszó: <input type="password" name="pw">
     // output data of each row
     $sor = 0;
     while($row = mysqli_fetch_assoc($result)) {
+
+      $tanulo->set_user($row['id'], $conn);
       
-      if($row["sor"]!=$sor){
+      if($tanulo->get_sor()!=$sor){
         if($sor != 0) echo '</tr>';
         echo '<tr>';
         $sor = $row["sor"];
@@ -210,9 +218,9 @@ Jelszó: <input type="password" name="pw">
        if($row['id'] == $en) $plusz .= 'id="beans"';
        if($_SESSION and $row['id'] == $_SESSION['id']) $plusz .= 'id="beans"';
        if($row['id'] == $tanarur) $plusz .= 'id="t"';
-       if(in_array(($row["oszlop"]-1),$lh[$sor-1])) $plusz .= 'id="inv"';
-       if(in_array(($row["oszlop"]-1),$nagy[$sor-1])) $plusz .= 'colspan="2"';
-        echo "<td".$plusz.">" . $row["nev"];
+       if(in_array(($tanulo->get_oszlop()-1),$lh[$sor-1])) $plusz .= 'id="inv"';
+       if(in_array(($tanulo->get_oszlop()-1),$nagy[$sor-1])) $plusz .= 'colspan="2"';
+        echo "<td".$plusz.">" . $tanulo->get_nev();
         //if(!empty($_SESSION['id']) and $_SESSION['id'] == 24 or !empty($_SESSION['id']) and $_SESSION['id'] == 4){
         if(!empty($_SESSION['id']) and in_array($_SESSION['id'], $f)){
         if(in_array($row["id"],$hianyzok)) echo '<br><a href="ulesrend.php?nem_hianyzo='.$row['id'].'">Nem hiányzó<a>';
