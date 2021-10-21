@@ -18,7 +18,7 @@ class ulesrend{
         if ($result->num_rows > 0) {
             if($row = $result->fetch_assoc()){
                 while($row = $result->fetch_assoc()){
-                    
+
                 }
 
             }
@@ -26,7 +26,7 @@ class ulesrend{
         }
         
       
-
+    }
 
 
     public function set_user($id, $conn){
