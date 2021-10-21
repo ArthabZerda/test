@@ -3,7 +3,6 @@ session_start();
 
 require 'db.inc.php';
 require "model/Ulesrend.php";
-$array = new ulesrend;
 $tanulo = new ulesrend;
 
 function tanulokListaja($conn){
@@ -12,7 +11,7 @@ function tanulokListaja($conn){
   return $result; //visszatérési érték
 }
 
-$array->get_array();
+
 // form feldolgozása
 //$loginError = '';
 if(!empty($_POST["hianyzo_id"])){

@@ -9,21 +9,24 @@ class ulesrend{
     private $oszlop;
     private $jelszo;
     private $felhasznalo;
-    private $array;
+    private $tabla;
 
     function tanulokListaja($conn){
+        $lista = array();
         $sql = "SELECT id, nev, sor, oszlop FROM ulesrend";
         $result = $conn->query($sql);
-        $array=array(); //visszatérési érték
-        
         if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-            array_push($array,$row['id']);
+            if($row = $result->fetch_assoc()){
+                while($row = $result->fetch_assoc()){
+                    
+                }
+
+            }
+        return $lista;
         }
-      }
-      public function get_array(){
-        return $this->array;        
-}
+        
+      
+
 
 
     public function set_user($id, $conn){

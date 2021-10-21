@@ -31,7 +31,7 @@
         <?php  
         $szoveg = "Belépés";
         $link = 'belepes.php';
-          $menupontok = array('index.php' => 'Főoldal',  'ulesrend.php' => 'Ülésrend',  'bruh1.php' => 'BRUH', $link => $szoveg);
+          $menupontok = array('index.php' => 'Főoldal',  'ulesrend.php' => 'Ülésrend',   $link => $szoveg);
 
             foreach($menupontok as $key => $value){
                 $active='';
