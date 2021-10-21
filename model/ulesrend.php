@@ -9,6 +9,22 @@ class ulesrend{
     private $oszlop;
     private $jelszo;
     private $felhasznalo;
+    private $array;
+
+    function tanulokListaja($conn){
+        $sql = "SELECT id, nev, sor, oszlop FROM ulesrend";
+        $result = $conn->query($sql);
+        $array=array(); //visszatérési érték
+        
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            array_push($array,$row['id']);
+        }
+      }
+      public function get_array(){
+        return $this->array;        
+}
+
 
     public function set_user($id, $conn){
         //adatbázisban lekérdzeés
