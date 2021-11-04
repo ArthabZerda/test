@@ -1,7 +1,7 @@
 <?php
 
-require 'db.inc.php';
-require "model/Ulesrend.php";
+require 'includes/db.inc.php';
+require "includes/model/Ulesrend.php";
 $tanulo = new ulesrend;
 include 'htmlheader.inc.php';
 
