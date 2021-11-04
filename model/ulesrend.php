@@ -34,7 +34,7 @@ class ulesrend{
 
             $sql ="SELECT id, nev, sor, oszlop, jelszo, felhasznalo FROM ulesrend WHERE id = $id";
             $result = $conn->query($sql);
-            if($conn = query($sql)){
+            
             if ($result->num_rows > 0) {
                 $row = $result->fetch_assoc();
                 $this->id = $row['id'];
@@ -44,10 +44,7 @@ class ulesrend{
                 $this->jelszo = $row['jelszo'];
                 $this->felhasznalo = $row['felhasznalo'];
                 }
-            } 
-            else{
-                echo "Error " .$sql. "<br>". $conn->error;
-            }
+            
     }
 
     public function get_id(){

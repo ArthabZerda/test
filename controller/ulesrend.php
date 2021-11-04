@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 require 'db.inc.php';
 require "model/Ulesrend.php";
