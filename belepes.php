@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-require 'db.inc.php';
+require 'includes/db.inc.php';
 $title = "Belépés";
-include 'htmlheader.inc.php';
+include 'includes/htmlheader.inc.php';
 require "model/Ulesrend.php";
 $tanulo = new ulesrend;
 

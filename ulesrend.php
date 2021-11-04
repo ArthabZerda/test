@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require 'db.inc.php';
+require 'includes/db.inc.php';
 require "model/Ulesrend.php";
 $tanulo = new ulesrend;
 
@@ -68,7 +68,7 @@ if(!empty($_POST["hianyzo_id"])){
 </head>
 <?php
 $title = "Ülésrend";
-include 'htmlheader.inc.php';
+include 'includes/htmlheader.inc.php';
 
 $hianyzok = array();//ebben lesznel a hiányzók id-i felsorolva
 
