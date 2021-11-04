@@ -3,6 +3,7 @@
 require 'db.inc.php';
 require "model/Ulesrend.php";
 $tanulo = new ulesrend;
+include 'htmlheader.inc.php';
 
 function tanulokListaja($conn){
   $sql = "SELECT id, nev, sor, oszlop FROM ulesrend";
