@@ -1,11 +1,38 @@
+
 <?php
+session_start();
+require 'db.inc.php';
+require "model/Ulesrend.php";
+$tanulo = new ulesrend; ?>
+<body>
+    <?php
+
+include 'htmlheader.inc.php';
+$page = 'index';
+
+if(isset($_REQUEST['page'])){
+    if(file_exists('controller/'.$_REQUEST['page'].'.php')){
+        $page = $_REQUEST['page'];
+
+    }
+}
+
+include 'controller/'.$page.'.php';
+?>
+</body>
+
+
+<!--
+    /* 
+<?php
+/*
 session_start();
 
 $title = "Főoldal";
 include 'htmlheader.inc.php';
 
    
-    //header('Location: belepes.php')
+    //header('Location: belepes.php')*/
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,3 +46,4 @@ include 'htmlheader.inc.php';
    <h1>Hello PHP</h1>
 </body>
 </html>
+-->
