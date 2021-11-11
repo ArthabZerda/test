@@ -5,22 +5,22 @@ table{
 }
 td,th{
 	border:2px solid black;
-	padding:1em;
+	
 	text-align:center;
-	background:lightyellow;
-	font-size:1.5em;
+	background:rgb(255, 255, 255);
+	font-size: 20px;
 	font-family:  Arial, Helvetica, sans-serif;
-	width:10em;
-	height:3em;
+	
+	height:100px
 }
 #me{
-	color:blue;
+	color:rgb(234, 0, 255);
 }
 
 .empty{
-	background:tomato;
+	background:rgb(255, 74, 74);
 }
 
 .missing{
-	background:lightblue;
+	background:rgb(0, 191, 255);
 }
