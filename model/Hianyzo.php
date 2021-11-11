@@ -11,9 +11,9 @@ class Hianyzo extends Kijeloltfelhasznalok {
 }
 
 // Teszt
-$hianyzo = new Hianyzo();
-
-$hianyzo->set_id(1, $conn);
-echo $hianyzo->get_id();
+public function delete_id($id){
+    $sql = "DELETE FROM hianyzok WHERE id =".$_GET['nem_hianyzo'];
+	$result = $conn->query($sql);	
+}
 
 ?>
