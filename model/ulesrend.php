@@ -1,40 +1,20 @@
 <?php
 
-
-
-class ulesrend{
+class Ulesrend {
+    
     private $id;
     private $nev;
     private $sor;
     private $oszlop;
     private $jelszo;
-    private $felhasznalo;
-    private $tabla;
+    private $felhasznalonev;
 
-    function tanulokListaja($conn){
-        $lista = array();
-        $sql = "SELECT id, nev, sor, oszlop FROM ulesrend";
+    public function set_user($id, $conn) {
+        // adatbázisból lekérdezzük
+        $sql = "SELECT id, nev, sor, oszlop, jelszo, felhasznalonev FROM ulesrend";
+        $sql .= " WHERE id = $id ";
         $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
-            if($row = $result->fetch_assoc()){
-                while($row = $result->fetch_assoc()){
-                    $lista[] = $row['id'];
-                }
-
-            }
-        return $lista;
-        }
-        
-      
-    }
-
-
-    public function set_user($id, $conn){
-        //adatbázisban lekérdzeés
-
-            $sql ="SELECT id, nev, sor, oszlop, jelszo, felhasznalo FROM ulesrend WHERE id = $id";
-            $result = $conn->query($sql);
-            
+        if ($conn->query($sql)) {
             if ($result->num_rows > 0) {
                 $row = $result->fetch_assoc();
                 $this->id = $row['id'];
@@ -42,41 +22,58 @@ class ulesrend{
                 $this->sor = $row['sor'];
                 $this->oszlop = $row['oszlop'];
                 $this->jelszo = $row['jelszo'];
-                $this->felhasznalo = $row['felhasznalo'];
+                $this->felhasznalonev = $row['felhasznalonev'];
+            }
+        } 
+        else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+    }
+
+    // építsük fel az összes get metódust
+    public function get_nev() {
+        return $this->nev;
+    }
+
+    public function get_jelszo() {
+        return $this->jelszo;
+    }
+
+    public function get_felhasznalonev() {
+        return $this->felhasznalonev;
+    }
+
+    public function get_sor() {
+        return $this->sor;
+    }
+
+    public function get_oszlop() {
+        return $this->oszlop;
+    }
+
+    public function get_id() {
+        return $this->id;
+    }
+
+    // tanulók id listáját adja vissza
+    public function tanulokListaja($conn) {
+        $lista = array();
+        $sql = "SELECT id FROM ulesrend";
+        if($result = $conn->query($sql)) {
+            if ($result->num_rows > 0) {
+				while($row = $result->fetch_assoc()) {
+                    $lista[] = $row['id'];
                 }
-            
+            }
+        }
+        return $lista;
     }
-
-    public function get_id(){
-        return $this->id;        
 }
-    public function get_nev(){
-               return $this->nev;        
-    }
-    public function get_sor(){
-        return $this->sor;        
-    }
-    public function get_oszlop(){
-        return $this->oszlop;        
-    }
-    public function get_jelszo(){
-        return $this->jelszo;        
-    }
-    public function get_felhasznalo(){
-        return $this->felhasznalo;        
-    }
-    
 
+// $tanulo = new Ulesrend;
 
-}/*
+// $tanulo->set_user(4, $conn);
 
-$tanulo = new ulesrend;
+// echo $tanulo->get_nev();
 
-$tanulo->set_user(4, $conn);
-echo "Név: ";
-echo $tanulo->get_nev()."<br>Sor: ";
-echo $tanulo->get_sor()."<br>Oszlop: ";
-echo $tanulo->get_oszlop()."<br>Jelszo: ";
-echo $tanulo->get_jelszo()."<br>Felhasználónév: ";
-echo $tanulo->get_felhasznalo()."<br>";*/
 ?>

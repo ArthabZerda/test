@@ -15,7 +15,7 @@ class Kijeloltfelhasznalok {
                 $this->id = $row['id'];
             }
             else {
-                $sql = "INSERT INTO $this->tablaNev VALUES ($id) ";
+                $sql = "INSERT INTO $this->tablaNev VALUES($id) ";
                 if($result = $conn->query($sql)) {
                     $this->id = $id;
                 }
@@ -47,4 +47,6 @@ class Kijeloltfelhasznalok {
         }
         return $lista;
     }
-} ?>
+}
+
+?>

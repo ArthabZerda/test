@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2021. Okt 14. 13:10
+-- Létrehozás ideje: 2021. Okt 14. 13:11
 -- Kiszolgáló verziója: 10.4.21-MariaDB
 -- PHP verzió: 8.0.10
 
@@ -24,20 +24,20 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `f`
+-- Tábla szerkezet ehhez a táblához `adminok`
 --
 
-CREATE TABLE `f` (
+CREATE TABLE `adminok` (
   `id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- A tábla adatainak kiíratása `f`
+-- A tábla adatainak kiíratása `adminok`
 --
 
-INSERT INTO `f` (`id`) VALUES
-(4),
-(24);
+INSERT INTO `adminok` (`id`) VALUES
+(8),
+(17);
 
 -- --------------------------------------------------------
 
@@ -48,6 +48,14 @@ INSERT INTO `f` (`id`) VALUES
 CREATE TABLE `hianyzok` (
   `id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- A tábla adatainak kiíratása `hianyzok`
+--
+
+INSERT INTO `hianyzok` (`id`) VALUES
+(5),
+(8);
 
 -- --------------------------------------------------------
 
@@ -61,48 +69,41 @@ CREATE TABLE `ulesrend` (
   `sor` tinyint(3) UNSIGNED NOT NULL,
   `oszlop` tinyint(3) UNSIGNED NOT NULL,
   `jelszo` varchar(32) CHARACTER SET latin1 NOT NULL,
-  `felhasznalo` varchar(50) CHARACTER SET latin1 NOT NULL
+  `felhasznalonev` varchar(50) CHARACTER SET latin1 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- A tábla adatainak kiíratása `ulesrend`
 --
 
-INSERT INTO `ulesrend` (`id`, `nev`, `sor`, `oszlop`, `jelszo`, `felhasznalo`) VALUES
-(1, 'Kulhanek László ', 1, 1, '', ''),
-(2, 'Molnár Gergő', 2, 1, '', ''),
-(3, '  ', 2, 2, '', ''),
-(4, 'Bakcsányi Dominik', 2, 3, 'f96af09d8bd35393a14c456e2ab990b6', 'furry'),
-(5, 'Füstös Lóránt', 2, 4, '4cdb5fb301adeb87064a168c2bcd7f08', 'Bruh'),
-(6, '  ', 2, 5, '', ''),
-(7, 'Orosz Zsolt', 2, 6, '', ''),
-(8, 'Harsányi László', 2, 7, '', ''),
-(9, '  ', 2, 8, '', ''),
-(10, '', 2, 9, '', ''),
-(11, 'Kereszturi Kevin', 3, 1, '', ''),
-(12, '  ', 3, 2, '', ''),
-(13, 'Juhász Levente', 3, 3, '', ''),
-(14, 'Szabó László', 3, 4, '', ''),
-(15, '  ', 3, 5, '', ''),
-(16, 'Sütő Dániel', 3, 6, '', ''),
-(17, 'Detari Klaudia', 3, 7, '', ''),
-(18, '  ', 3, 8, '', ''),
-(19, '', 3, 9, '', ''),
-(20, 'Fazekas Miklós', 4, 1, '', ''),
-(21, '  ', 4, 2, '', ''),
-(22, 'Gombos János', 4, 3, '', ''),
-(23, '  ', 4, 4, '', ''),
-(24, 'Tanár úr', 4, 5, 'e3afed0047b08059d0fada10f400c1e5', 'Admin');
+INSERT INTO `ulesrend` (`id`, `nev`, `sor`, `oszlop`, `jelszo`, `felhasznalonev`) VALUES
+(1, 'Kulhanek László István', 1, 1, '', 'username'),
+(2, 'Molnár Gergő Máté', 2, 1, '', ''),
+(3, 'Bakcsányi Dominik', 2, 2, '', ''),
+(4, 'Füstös Loránt', 2, 3, '', ''),
+(5, 'Orosz Zsolt', 2, 4, '', ''),
+(6, 'Harsányi László Ferenc', 2, 5, '', ''),
+(7, '', 2, 6, '', ''),
+(8, 'Kereszturi Kevin', 3, 1, '', ''),
+(9, 'Juhász Levente', 3, 2, '', ''),
+(10, 'Szabó László', 3, 3, '', ''),
+(11, 'Sütő Dániel', 3, 4, '', ''),
+(12, 'Détári Klaudia', 3, 5, '', ''),
+(13, '', 3, 6, '', ''),
+(14, 'Fazekas Miklós Adrián', 4, 1, '', ''),
+(15, '', 4, 2, '', ''),
+(16, 'Gombos János', 4, 3, '', ''),
+(17, 'Bicsák József', 4, 4, 'e10adc3949ba59abbe56e057f20f883e', 'bicsi');
 
 --
 -- Indexek a kiírt táblákhoz
 --
 
 --
--- A tábla indexei `f`
+-- A tábla indexei `adminok`
 --
-ALTER TABLE `f`
-  ADD KEY `ibfk_adminok_id` (`id`);
+ALTER TABLE `adminok`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- A tábla indexei `hianyzok`
@@ -124,17 +125,17 @@ ALTER TABLE `ulesrend`
 -- AUTO_INCREMENT a táblához `ulesrend`
 --
 ALTER TABLE `ulesrend`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- Megkötések a kiírt táblákhoz
 --
 
 --
--- Megkötések a táblához `f`
+-- Megkötések a táblához `adminok`
 --
-ALTER TABLE `f`
-  ADD CONSTRAINT `ibfk_adminok_id` FOREIGN KEY (`id`) REFERENCES `ulesrend` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `adminok`
+  ADD CONSTRAINT `ibfk_tanulo_admin` FOREIGN KEY (`id`) REFERENCES `ulesrend` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Megkötések a táblához `hianyzok`

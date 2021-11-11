@@ -1,7 +1,6 @@
 <?php
 
-require '../includes/db.inc.php';
-require 'Kijeloltfelhasznalok.php';
+require_once 'Kijeloltfelhasznalok.php';
 
 class Hianyzo extends Kijeloltfelhasznalok {
     
@@ -9,11 +8,13 @@ class Hianyzo extends Kijeloltfelhasznalok {
         $this->tablaNev = 'hianyzok';
     }
 
+    /**
+     * 
+     */
+    public function remove_id($id, $conn) {
+        $sql = "DELETE FROM hianyzok WHERE id = $id";
+        $result = $conn->query($sql);	
+    }
+}
 
-// Teszt
-public function remove_id($id){
-    $sql = "DELETE FROM hianyzok WHERE id =".$_GET['nem_hianyzo'];
-	$result = $conn->query($sql);	
-}
-}
 ?>

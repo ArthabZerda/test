@@ -1,49 +1,51 @@
-
 <?php
-session_start();
-require 'includes/db.inc.php';
-require "model/Ulesrend.php";
-$tanulo = new ulesrend; ?>
-<body>
-    <?php
 
-include 'includes/htmlheader.inc.php';
+session_start();
+
+require 'includes/db.inc.php';
+require 'model/Ulesrend.php';
+$tanulo = new Ulesrend;
+
+// default oldal
 $page = 'index';
 
-if(isset($_REQUEST['page'])){
-    if(file_exists('controller/'.$_REQUEST['page'].'.php')){
-        $page = $_REQUEST['page'];
-
-    }
+// kilépés végrehajtása
+if(!empty($_REQUEST['action'])) {
+	if($_REQUEST['action'] == 'kilepes') session_unset();
 }
 
-include 'controller/'.$page.'.php';
+// ki vagy be vagyok lépve?
+if(!empty($_SESSION["id"])) {
+        $szoveg = $_SESSION["nev"].": Kilépés";
+        $action = "kilepes";
+}
+else {
+        $szoveg = "Belépés";
+        $action = "belepes";        
+} 
+
+// router
+if(isset($_REQUEST['page'])) {
+        if(file_exists('controller/'.$_REQUEST['page'].'.php')) {
+                $page = $_REQUEST['page']; 
+        }
+}
+
+$menupontok = array(    'index' => "Főoldal", 
+                        'ulesrend' => "Ülésrend", 
+                        'felhasznalo' => $szoveg
+                );
+
+$title = $menupontok[$page];
+
+include 'includes/htmlheader.inc.php';
 ?>
-</body>
-
-
-<!--
-    /* 
-<?php
-/*
-session_start();
-
-$title = "Főoldal";
-include 'htmlheader.inc.php';
-
-   
-    //header('Location: belepes.php')*/
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-</head>
 <body>
-   <h1>Hello PHP</h1>
+<?php
+
+include 'includes/menu.inc.php';
+include 'controller/'.$page.'.php';
+
+?>
 </body>
 </html>
--->
