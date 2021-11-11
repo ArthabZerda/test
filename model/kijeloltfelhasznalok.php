@@ -1,68 +1,50 @@
 <?php
 
-class kijeloltfelhasznalok{
-    private $id;
-    protected $tablanev
+class Kijeloltfelhasznalok {
     
-    function __construct($tablanev){
-        $this->tablanev = $tablanev;
-    }
+    private $id;
+    protected $tablaNev;
 
-    protected function set_id($id, $conn){
-        //adatbázisban lekérdzeés
-
-            $sql ="SELECT id FROM $this->$tablanev WHERE id = $id";
-            $result = $conn->query($sql);
-            
+    public function set_id($id, $conn) {
+        // adatbázisból lekérdezzük
+        $sql = "SELECT id FROM $this->tablaNev WHERE id = $id ";
+        $result = $conn->query($sql);
+        if ($conn->query($sql)) {
             if ($result->num_rows > 0) {
                 $row = $result->fetch_assoc();
                 $this->id = $row['id'];
+            }
+            else {
+                $sql = "INSERT INTO $this->tablaNev VALUES ($id) ";
+                if($result = $conn->query($sql)) {
+                    $this->id = $id;
                 }
-                else{
-                    $sql ="INSERT INTO $this->$tablanev ($id)";
-                    if($result = $conn->querry($sql)){
-                        $this->id = $ud;
-                    }
+                else {
+                    echo "Error: " . $sql . "<br>" . $conn->error;
                 }
-            
+            }
+        } 
+        else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
     }
 
-    protected function get_id(){
-        return $this->id;        
+    // építsük fel az összes get metódust
+    public function get_id() {
+        return $this->id;
     }
 
-    protected function lista($conn){
+    // id listát ad vissza
+    public function lista($conn) {
         $lista = array();
-        $sql = "SELECT id FROM $this->$tablanev";
-        $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
-            if($row = $result->fetch_assoc()){
-                while($row = $result->fetch_assoc()){
+        $sql = "SELECT id FROM $this->tablaNev";
+        if($result = $conn->query($sql)) {
+            if ($result->num_rows > 0) {
+				while($row = $result->fetch_assoc()) {
                     $lista[] = $row['id'];
                 }
-
             }
-        return $lista;
         }
-        
-      
+        return $lista;
     }
-
-
-    
-    
-    
-
-
-}/*
-
-$tanulo = new ulesrend;
-
-$tanulo->set_user(4, $conn);
-echo "Név: ";
-echo $tanulo->get_nev()."<br>Sor: ";
-echo $tanulo->get_sor()."<br>Oszlop: ";
-echo $tanulo->get_oszlop()."<br>Jelszo: ";
-echo $tanulo->get_jelszo()."<br>Felhasználónév: ";
-echo $tanulo->get_felhasznalo()."<br>";*/
-?>
+} ?>
