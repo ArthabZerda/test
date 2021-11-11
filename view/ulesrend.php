@@ -1,5 +1,5 @@
 <?php
- include 'htmlheader.php'
+ include 'htmlheader.inc.php';
 ?>
 
 <body>
