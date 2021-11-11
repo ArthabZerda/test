@@ -1,7 +1,7 @@
 table{
 	border:2px solid black;
 	background:lightgray;
-	padding:1em;
+	margin: auto;
 }
 td,th{
 	border:2px solid black;
@@ -14,7 +14,8 @@ td,th{
 	height:100px
 }
 #me{
-	color:rgb(234, 0, 255);
+	color:rgb(255, 217, 0);
+	background-color: black;
 }
 
 .empty{
@@ -23,4 +24,7 @@ td,th{
 
 .missing{
 	background:rgb(0, 191, 255);
+}
+#al{
+	margin:auto;
 }

@@ -1,9 +1,9 @@
-
+<div>
 		<table>
 			<tr>
 				<th colspan="3">
 					<h2>Ülésrend</h2>
-				</th>
+				</th><br>
 				<th colspan="3">
 				<?php
 				
@@ -67,5 +67,6 @@
 
 				?>
 		</table>
+    </div>
 	</body>
 </html>
