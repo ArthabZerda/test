@@ -3,6 +3,10 @@
 class kijeloltfelhasznalok{
     private $id;
     protected $tablanev
+    
+    function __construct($tablanev){
+        $this->tablanev = $tablanev;
+    }
 
     protected function set_id($id, $conn){
         //adatbázisban lekérdzeés
@@ -27,7 +31,7 @@ class kijeloltfelhasznalok{
         return $this->id;        
     }
 
-    protected function adminokListaja($conn){
+    protected function lista($conn){
         $lista = array();
         $sql = "SELECT id FROM $this->$tablanev";
         $result = $conn->query($sql);
