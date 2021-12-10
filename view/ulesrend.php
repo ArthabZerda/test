@@ -89,7 +89,12 @@
 				$conn->close();
 
 				?>
+
 		</table>
     </div>
+
+	<?php
+	
+	?>
 	</body>
 </html>
