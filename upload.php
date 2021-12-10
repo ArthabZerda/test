@@ -10,8 +10,8 @@ if(isset($_FILES["fileToUpload"])) {
   foreach($_FILES["fileToUpload"]["name"] as $key => $name) {
      $target_file = $target_dir . basename($name);
 
-    if ($_FILES["fileToUpload"]["size"][$key] > 102400) {
-      $errors[$key][] = "A $name túl nagy méretű, 100KB-nál nem lehet nagyobb";
+    if ($_FILES["fileToUpload"]["size"][$key] > 1024000) {
+      $errors[$key][] = "A $name túl nagy méretű, 1000KB-nál nem lehet nagyobb";
     }
     elseif ($_FILES["fileToUpload"]["size"][$key] < 1024) {
       $errors[$key][] = "A $name túl kis méretű, 1KB-nál nem lehet kisebb";

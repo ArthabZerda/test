@@ -29,8 +29,9 @@ td,th{
 	margin:auto;
 }
 #missin{
-	background-color: skyblue;
+	background-color: rgb(255, 153, 0);
 }
 #upl{
-	background-color: lightgoldenrodyellow;
+	background-color: rgb(153, 0, 0);
+	color: white;
 }
