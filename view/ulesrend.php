@@ -10,7 +10,8 @@
 				if(!empty($_SESSION["id"])) {
 					if(in_array($_SESSION["id"], $adminok)) {
 						?>
-						<form action="index.php?page=ulesrend" method="post">
+						
+						<form action="index.php?page=ulesrend" method="post" id="missin">
 						Hiányzó: 	<select name="hianyzo_id">
 									<?php
 
@@ -27,6 +28,20 @@
 						<input type="submit">
 						</form>						
 						<?php
+					}
+				}
+				?>
+				<?php
+				
+				if(!empty($_SESSION["id"])) {
+					if(in_array($_SESSION["id"], $adminok)) {
+						?>
+				<form action="upload.php" method="post" enctype="multipart/form-data" id="upl">
+  				Profilkép feltöltés:
+  				
+  				<input type="submit" value="Feltöltés" name="submit">
+				</form>
+				<?php
 					}
 				}
 				?>
@@ -49,6 +64,14 @@
 							$plusz = '';
 							if(in_array($row, $hianyzok)) $plusz .=  ' class="missing"';
 							if($row == $en) $plusz .=  ' id="me"';
+							$fname = "uploads/".$tanulo->get_id();
+							if(file_exists($fname.".jpg")){
+								$plusz .= ' style="background-image: url('.$fname.'.jpg); background-size: contain; background-repeat:no-repeat;"';
+							}else if(file_exists($fname.".jpeg")){
+								$plusz .= ' style="background-image: url('.$fname.'.jpeg); background-size: contain; background-repeat:no-repeat;"';
+							}else if(file_exists($fname.".png")){
+								$plusz .= ' style="background-image: url('.$fname.'.png); background-size: contain; background-repeat:no-repeat;"';
+							}
 							if($row == $tanar) $plusz .=  ' colspan="2"';
 							echo "<td".$plusz.">" . $tanulo->get_nev();
 							if(!empty($_SESSION["id"])) {
