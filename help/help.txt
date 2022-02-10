@@ -1,1 +1,14 @@
 http://localhost/test/index.php?page=ulesrend
+
+$sql = "SELECT `ir`, `varos` FROM `telepules` ORDER BY `varosok`.`varos` ASC;";
+?>
+<table>
+    <?php
+    $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+			while($row = $result->fetch_assoc()) {
+                echo "<tr><td>".$row["varos"]." ".$row["ir"]."</td></tr>";
+            }
+        }
+    ?>
+</table>
